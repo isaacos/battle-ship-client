@@ -1,6 +1,7 @@
 import React, { useState, useContext } from 'react';
-import { battleshipReducer } from '../reducers'
-import {Context} from '../Store'
+import { battleshipReducer } from '../reducers';
+import {Context} from '../Store';
+import Grid from '../component/Grid'
 
 function Player(props) {
 
@@ -11,6 +12,7 @@ function Player(props) {
       <button onClick={() => dispatch({type: 'TURN_COUNTER'})}>
         Click me
       </button>
+      <Grid />
     </div>
   )
 }

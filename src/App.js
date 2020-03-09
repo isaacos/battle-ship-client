@@ -1,9 +1,10 @@
-import React from 'react';
+import React, { useState, useContext } from 'react';
 import './App.css';
 import PlayerContainer from './component/PlayersContainer';
 import Store from './Store';
 
 function App() {
+
 
   return (
     <Store>

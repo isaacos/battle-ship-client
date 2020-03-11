@@ -12,8 +12,7 @@ function BoatContainer(){
       }
     })
   }
-
-  console.log(state)
+  
   return(
     <div>
       {state.turn === 1 ?

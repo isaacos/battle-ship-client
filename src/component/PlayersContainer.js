@@ -5,7 +5,7 @@ import {Context} from '../Store';
 function PlayersContainer(){
 
   const [state, dispatch] = useContext(Context);
-  console.log(state)
+  
   return(
     <React.Fragment>
       {state.turn % 2 === 1 ?

@@ -26,7 +26,6 @@ const updatePlayerBoats = (state, coordinateArray) => {
           return boat
         }
       })
-      console.log()
       return {...state, playerOneBoats: playerOneBoats, selectedBoat: []}
     }
     if(state.turn === 2){
@@ -40,8 +39,38 @@ const updatePlayerBoats = (state, coordinateArray) => {
             return boat
           }
         })
-        console.log()
         return {...state, playerTwoBoats: playerTwoBoats, selectedBoat: []}
+    }
+    else {
+      return {...state}
+    }
+  }
+
+  const logMiss = (state, coordinate) => {
+    if(state.turn % 2 === 1){
+      const missesArray = [...state.playerOneShots[0], coordinate]
+      const hitsArray = [...state.playerOneShots[1]]
+      const playerOneShots = [ missesArray, hitsArray ]
+      return {...state, playerOneShots: playerOneShots}
+    } else {
+      const missesArray = [...state.playerTwoShots[0], coordinate]
+      const hitsArray = [...state.playerTwoShots[1]]
+      const playerTwoShots = [ missesArray, hitsArray ]
+      return {...state, playerTwoShots: playerTwoShots}
+    }
+  }
+
+  const logHit = (state, coordinate, boats) => {
+    if(state.turn % 2 === 1){
+      const hitsArray = [...state.playerOneShots[1], coordinate]
+      const missesArray = [...state.playerOneShots[0]]
+      const playerOneShots = [ missesArray, hitsArray ]
+      return {...state, playerOneShots: playerOneShots, playerTwoBoats: boats}
+    } else {
+      const hitsArray = [...state.playerTwoShots[1], coordinate]
+      const missesArray = [...state.playerTwoShots[0]]
+      const playerTwoShots = [ missesArray, hitsArray ]
+      return {...state, playerTwoShots: playerTwoShots, playerOneBoats: boats}
     }
   }
 
@@ -56,6 +85,10 @@ const updatePlayerBoats = (state, coordinateArray) => {
       return {...state, selectedBoat: selectedBoatCoordinate(state, action.coordinate, action.index)}
     case 'UPDATE_PLAYER_BOATS':
       return updatePlayerBoats(state, action.coordinateArray)
+    case 'LOG_MISS':
+      return logMiss(state, action.coordinate)
+    case 'LOG_HIT':
+      return logHit(state, action.coordinate, action.boats)
     default:
       return state;
   }

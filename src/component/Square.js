@@ -1,4 +1,4 @@
-import React, { useState, useContext } from 'react';
+import React, { useEffect, useContext } from 'react';
 import {Context} from '../Store';
 
 
@@ -15,7 +15,7 @@ function Square(props){
 
   function handleMouseEnter(coordinate){
     //prevents error from coordinate being undefined
-    if(state.selectedBoat && state.selectedBoat[0] !== 0 && coordinate){
+    if(state.selectedBoat[0] && state.selectedBoat[0] !== 0 && coordinate){
       //get selectedBoat coordinate array
       let boatCoordinates = [...state.selectedBoat]
       //checks if it is in the same row
@@ -63,8 +63,12 @@ function Square(props){
   }
 
 
+
+
+
+
   return(
-    <div onMouseDown={() => handleMouseDown(props.coordinate) } onMouseEnter={() => handleMouseEnter( props.coordinate)} className="square">
+    <div id={props.coordinate} onMouseDown={() => handleMouseDown(props.coordinate) } onMouseEnter={() => handleMouseEnter(props.coordinate)} className="square">
     </div>
   )
 }

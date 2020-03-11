@@ -27,7 +27,7 @@ const updatePlayerBoats = (state, coordinateArray) => {
         }
       })
       console.log()
-      return {...state, playerOneBoats: playerOneBoats, selectedBoat: null}
+      return {...state, playerOneBoats: playerOneBoats, selectedBoat: []}
     }
     if(state.turn === 2){
       const playerTwoBoats = state.playerTwoBoats.map(function(boat){
@@ -41,7 +41,7 @@ const updatePlayerBoats = (state, coordinateArray) => {
           }
         })
         console.log()
-        return {...state, playerTwoBoats: playerTwoBoats, selectedBoat: null}
+        return {...state, playerTwoBoats: playerTwoBoats, selectedBoat: []}
     }
   }
 

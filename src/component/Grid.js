@@ -13,6 +13,7 @@ function Grid(){
         const coordinates = Object.values(boatObj)[0].filter(coordinate => coordinate !== 0)
         coordinateArray = [...coordinateArray, ...coordinates]
       })
+      if(state.turn > 2 && coordinateArray.length === 0){ alert('You Won')}
       return coordinateArray
   }
 
@@ -23,18 +24,20 @@ function Grid(){
 
 
   useEffect(() => {
-    const filledCoordinates = includedCoordinate(state.playerOneBoats)
-    const filledCoordinatesP2 = includedCoordinate(state.playerTwoBoats)
+    const filledBoatCoordinates = includedCoordinate(state.playerOneBoats)
+    const filledBoatCoordinatesP2 = includedCoordinate(state.playerTwoBoats)
     if(state.turn === 1){
-      displayOrUpdateGridStyle(filledCoordinates, 'grey')
+      displayOrUpdateGridStyle(filledBoatCoordinates, 'grey')
     } else if (state.turn === 2){
-      displayOrUpdateGridStyle(filledCoordinates, 'white')
+      displayOrUpdateGridStyle(filledBoatCoordinates, 'white')
 
-      displayOrUpdateGridStyle(filledCoordinatesP2, 'grey')
+      displayOrUpdateGridStyle(filledBoatCoordinatesP2, 'grey')
     } else if (state.turn % 2 === 1){
       if(state.turn === 3){
-        displayOrUpdateGridStyle(filledCoordinatesP2, 'white')
+        displayOrUpdateGridStyle(filledBoatCoordinatesP2, 'white')
       }
+      displayOrUpdateGridStyle(state.playerOneShots[0], 'blue')
+      displayOrUpdateGridStyle(state.playerOneShots[1], 'red')
     }
   })
 
@@ -65,6 +68,7 @@ function Grid(){
         const newValues = objValue.filter(coor => coor !== coordinate)
         let newBoat = new Object
         newBoat[key] = newValues
+        //alerts that ship sunk
         if(newValues.length === 0){
           alert(`You sunk ${key}`)
         }

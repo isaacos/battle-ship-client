@@ -63,10 +63,6 @@ function Square(props){
   }
 
 
-
-
-
-
   return(
     <div id={props.coordinate} onMouseDown={() => handleMouseDown(props.coordinate) } onMouseEnter={() => handleMouseEnter(props.coordinate)} className="square">
     </div>

@@ -21,7 +21,10 @@ const initialState = {
   turn: 1,
   playerOneBoats: [{"Carrier": [0, 0, 0, 0, 0]}, {"Patrol Boat": [0, 0]}],
   playerTwoBoats: [{"Carrier": [0, 0, 0, 0, 0]}, {"Patrol Boat": [0, 0]}],
-  selectedBoat: []
+  selectedBoat: [],
+  //first element logs misses, second logs hits
+  playerOneShots: [[],[]],
+  playerTwoShots: [[],[]]
 }
 
 

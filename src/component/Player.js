@@ -1,7 +1,7 @@
 import React, { useState, useContext } from 'react';
-import { battleshipReducer } from '../reducers';
 import {Context} from '../Store';
-import Grid from '../component/Grid'
+import Grid from '../component/Grid';
+import BoatContainer from '../component/BoatContainer';
 
 function Player(props) {
 
@@ -13,6 +13,7 @@ function Player(props) {
         Click me
       </button>
       <Grid />
+      <BoatContainer  />
     </div>
   )
 }

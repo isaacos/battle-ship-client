@@ -18,7 +18,7 @@ const updatePlayerBoats = (state, coordinateArray) => {
   if(state.turn === 1){
     const playerOneBoats = state.playerOneBoats.map(function(boat){
         if(state.selectedBoat.length === Object.values(boat)[0].length){
-          let obj = new Object
+          let obj = {}
           const key = Object.keys(boat)[0]
           obj[key] = coordinateArray
           return obj
@@ -31,7 +31,7 @@ const updatePlayerBoats = (state, coordinateArray) => {
     if(state.turn === 2){
       const playerTwoBoats = state.playerTwoBoats.map(function(boat){
           if(state.selectedBoat.length === Object.values(boat)[0].length){
-            let obj = new Object
+            let obj = {}
             const key = Object.keys(boat)[0]
             obj[key] = coordinateArray
             return obj

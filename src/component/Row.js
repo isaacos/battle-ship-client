@@ -7,7 +7,7 @@ function Row(props){
     <React.Fragment>
       <div style={{display: 'flex'}}>
         <div style={{width: '40px'}}>{props.row[0][0]}</div>
-        {props.row.map(coordinate => ( <Square coordinate={coordinate} key={coordinate}></ Square>))}
+        {props.row.map(coordinate => ( <Square playersBoatLocation={props.playersBoatLocation} coordinate={coordinate} key={coordinate}></ Square>))}
       </div>
     </React.Fragment>
   )

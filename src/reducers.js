@@ -17,7 +17,7 @@ const selectedBoatCoordinate = (state, coordinate, index) => {
 const updatePlayerBoats = (state, coordinateArray) => {
   if(state.turn === 1){
     const playerOneBoats = state.playerOneBoats.map(function(boat){
-        if(state.selectedBoat.length === Object.values(boat)[0].length){
+        if(state.selectedBoatName === Object.keys(boat)[0]){
           let obj = {}
           const key = Object.keys(boat)[0]
           obj[key] = coordinateArray
@@ -26,11 +26,11 @@ const updatePlayerBoats = (state, coordinateArray) => {
           return boat
         }
       })
-      return {...state, playerOneBoats: playerOneBoats, selectedBoat: []}
+      return {...state, playerOneBoats: playerOneBoats, selectedBoat: [], selectedBoatName: null}
     }
     if(state.turn === 2){
       const playerTwoBoats = state.playerTwoBoats.map(function(boat){
-          if(state.selectedBoat.length === Object.values(boat)[0].length){
+          if(state.selectedBoatName === Object.keys(boat)[0]){
             let obj = {}
             const key = Object.keys(boat)[0]
             obj[key] = coordinateArray
@@ -39,7 +39,7 @@ const updatePlayerBoats = (state, coordinateArray) => {
             return boat
           }
         })
-        return {...state, playerTwoBoats: playerTwoBoats, selectedBoat: []}
+        return {...state, playerTwoBoats: playerTwoBoats, selectedBoat: [], selectedBoatName: null}
     }
     else {
       return {...state}
@@ -81,7 +81,7 @@ const updatePlayerBoats = (state, coordinateArray) => {
     case 'TURN_COUNTER':
       return addTurnCounter(state.turn,  state)
     case 'SELECT_BOAT':
-      return {...state, selectedBoat: Object.values(action.selectedBoat)[0]}
+      return {...state, selectedBoat: Object.values(action.selectedBoat)[0], selectedBoatName: Object.keys(action.selectedBoat)[0]}
     case 'INPUT_BOAT_COORDINATE':
       return {...state, selectedBoat: selectedBoatCoordinate(state, action.coordinate, action.index)}
     case 'UPDATE_PLAYER_BOATS':

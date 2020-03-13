@@ -30,6 +30,7 @@ const initialState = {
   playerOneBoats: [...boats],
   playerTwoBoats: [{"Carrier": [0, 0, 0, 0, 0]}, {"Patrol Boat": [0, 0]}],
   selectedBoat: [],
+  selectedBoatName: null,
   //first element logs misses, second logs hits
   playerOneShots: [[],[]],
   playerTwoShots: [[],[]]

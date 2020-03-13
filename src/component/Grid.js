@@ -81,6 +81,8 @@ function Grid(){
     nextTurnDelay(3000)
   }
 
+  console.log(state)
+
   function logHit(coordinate, opponentsBoats){
     const boatsUpdated = opponentsBoats.map(function(boat){
       const objValue = Object.values(boat)[0]

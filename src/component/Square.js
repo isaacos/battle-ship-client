@@ -45,25 +45,21 @@ function Square(props){
     const firstCoordinateLetter = boatCoordinates[0][0]
     const secondCoordinateLetter = coordinate[0]
     const firstCoordinateNum = boatCoordinates[0].substring(1)
-    if(firstCoordinateLetter < secondCoordinateLetter){
-      //return undefined if boat is too long for a location
-      let firstLetterIndex = state.letters.indexOf(firstCoordinateLetter)
-      if(firstLetterIndex + state.selectedBoat.length > state.letters.length){ return }
-      boatCoordinates =  boatCoordinates.map(function(coor){
-         coor = state.letters[firstLetterIndex] + firstCoordinateNum
-        ++firstLetterIndex
-        return coor
-      })
-      return boatCoordinates
-
-    } else {
-      let firstLetterIndex = state.letters.indexOf(firstCoordinateLetter)
-      if(firstLetterIndex - state.selectedBoat.length < 0){ return }
-      boatCoordinates =  boatCoordinates.map(function(coor){
-         coor = state.letters[firstLetterIndex] + firstCoordinateNum
-        --firstLetterIndex
-        return coor
-      })
+    const firstLetterIndex = state.letters.indexOf(firstCoordinateLetter)
+    //return undefined if selected boat would go out of the boundaries of the grid
+    if(firstCoordinateLetter < secondCoordinateLetter && firstLetterIndex + state.selectedBoat.length > state.letters.length){
+      return
+    } else if(firstCoordinateLetter > secondCoordinateLetter && firstLetterIndex - state.selectedBoat.length < 0){
+      return
+    }  else {
+        boatCoordinates =  boatCoordinates.map(function(coor, index){
+          if(firstCoordinateLetter < secondCoordinateLetter){
+            coor = state.letters[firstLetterIndex + index] + firstCoordinateNum
+          } else {
+            coor = state.letters[firstLetterIndex - index] + firstCoordinateNum
+          }
+          return coor
+        })
       return boatCoordinates
     }
   }

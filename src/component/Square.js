@@ -5,6 +5,8 @@ import {Context} from '../Store';
 
 function Square(props){
 
+  //move logic to Grid in order to update local state 
+
   const [state, dispatch] = useContext(Context);
 
 

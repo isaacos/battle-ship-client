@@ -5,6 +5,11 @@ import {Context} from '../Store';
 
 function Grid(){
 
+  //next Steps
+  //refactor to avoid repetition related to players turn
+  //potentially simply by adding props associated with players and opponentsBoats in PlayersContainer
+  //switch some of the logic in Grid and Square to allow for rendering of SelectedBoat before it is added to a PlayersBoats
+
   const [state, dispatch] = useContext(Context);
   const [playersBoatLocation, setPlayersBoatLocation] = useState(includedCoordinate([]));
   const [shots, setShots] = useState(1)
@@ -40,6 +45,8 @@ function Grid(){
     setPlayersBoatLocation(includedCoordinate(playerBoats))
   }, [state.turn, state.playerOneBoats, state.playerTwoBoats])
 
+
+  //avoids each square running an includes statements
   useEffect(() => {
     const filledBoatCoordinates = includedCoordinate(state.playerOneBoats)
     const filledBoatCoordinatesP2 = includedCoordinate(state.playerTwoBoats)

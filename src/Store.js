@@ -4,7 +4,7 @@ import { battleshipReducer } from './reducers';
 //10 letter length
 const letters = 'ABCDEFGHIJ'.split('')
 
-//creates letter 2D array
+//creates letter 2D array each element in the lower level array is a letter and number
 const twoDArray = letters.map(function(letter){
   let i = 1
   let row = []
@@ -14,7 +14,7 @@ const twoDArray = letters.map(function(letter){
   }
   return row
 })
-
+//easy to determin which boat is hit
 const boats = [
   {"Carrier": [0, 0, 0, 0, 0]},
   {"Battleship": [0, 0, 0, 0]},

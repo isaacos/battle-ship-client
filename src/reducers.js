@@ -46,6 +46,7 @@ const updatePlayerBoats = (state, coordinateArray) => {
     }
   }
 
+  //refactor move logic to component
   const logMiss = (state, coordinate) => {
     if(state.turn % 2 === 1){
       const missesArray = [...state.playerOneShots[0], coordinate]
@@ -60,6 +61,7 @@ const updatePlayerBoats = (state, coordinateArray) => {
     }
   }
 
+  //refactor move logic to component
   const logHit = (state, coordinate, boats) => {
     if(state.turn % 2 === 1){
       const hitsArray = [...state.playerOneShots[1], coordinate]

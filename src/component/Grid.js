@@ -6,7 +6,8 @@ import {Context} from '../Store';
 function Grid(){
 
   const [state, dispatch] = useContext(Context);
-  const [playersBoatLocation, setPlayersBoatLocation] = useState(includedCoordinate([]))
+  const [playersBoatLocation, setPlayersBoatLocation] = useState(includedCoordinate([]));
+  const [shots, setShots] = useState(1)
 
   function includedCoordinate(playerBoats){
       let coordinateArray = []
@@ -21,7 +22,10 @@ function Grid(){
   useEffect(() => {
     if(state.turn > 2){
       const opponentsBoatLocations = state.turn % 2 ===1 ? includedCoordinate(state.playerTwoBoats) : includedCoordinate(state.playerOneBoats)
-      if(opponentsBoatLocations.length === 0){ alert('You Won')}
+      if(opponentsBoatLocations.length === 0){
+        alert('You Won')
+        window.location.reload(false)
+      }
     }
 
   }, [state.turn, state.playerOneBoats, state.playerTwoBoats])
@@ -64,7 +68,7 @@ function Grid(){
   })
 
   function clickHandler(event){
-    if(state.turn > 2 && event.target.id){
+    if(state.turn > 2 && event.target.id && shots === 1){
       const coordinate = event.target.id
       const opponentBoats = (state.turn % 2 === 1) ? state.playerTwoBoats : state.playerOneBoats
       const opponentBoatLocation = includedCoordinate(opponentBoats)
@@ -78,10 +82,8 @@ function Grid(){
 
   function logMiss(coordinate){
     dispatch({type: 'LOG_MISS', coordinate: coordinate})
-    nextTurnDelay(3000)
+    nextTurnDelay(1000)
   }
-
-  console.log(state)
 
   function logHit(coordinate, opponentsBoats){
     const boatsUpdated = opponentsBoats.map(function(boat){
@@ -102,14 +104,21 @@ function Grid(){
       }
     })
     dispatch({type: 'LOG_HIT', coordinate: coordinate,  boats: boatsUpdated})
-    nextTurnDelay(3000)
+    nextTurnDelay(1000)
   }
 
   function nextTurnDelay(time){
+    setShots(0) //prevents player from hitting two ships in one turn
     setTimeout(function(){
       dispatch({type: 'TURN_COUNTER'})
     }, time)
   }
+
+  useEffect(() => {
+    if(state.turn > 2){
+      setShots(1)
+    }
+  }, [state.turn])
 
   return (
     <React.Fragment >

@@ -35,9 +35,6 @@ function Grid(){
 
     setPlayersBoatLocation(includedCoordinate(playerBoats))
   }, [state.turn, state.playerOneBoats, state.playerTwoBoats])
-  console.log(playersBoatLocation)
-
-
 
   useEffect(() => {
     const filledBoatCoordinates = includedCoordinate(state.playerOneBoats)
@@ -49,6 +46,7 @@ function Grid(){
 
       displayOrUpdateGridStyle(filledBoatCoordinatesP2, 'grey')
     } else if (state.turn % 2 === 1){
+      //removes the player two's boats from displaying
       if(state.turn === 3){
         displayOrUpdateGridStyle(filledBoatCoordinatesP2, 'white')
       }
@@ -64,7 +62,6 @@ function Grid(){
       displayOrUpdateGridStyle(state.playerTwoShots[1], 'red')
     }
   })
-  console.log(state)
 
   function clickHandler(event){
     if(state.turn > 2 && event.target.id){
@@ -80,9 +77,8 @@ function Grid(){
   }
 
   function logMiss(coordinate){
-    let element = document.getElementById(coordinate)
     dispatch({type: 'LOG_MISS', coordinate: coordinate})
-    element.style.backgroundColor = "blue"
+    nextTurnDelay(3000)
   }
 
   function logHit(coordinate, opponentsBoats){
@@ -104,6 +100,13 @@ function Grid(){
       }
     })
     dispatch({type: 'LOG_HIT', coordinate: coordinate,  boats: boatsUpdated})
+    nextTurnDelay(3000)
+  }
+
+  function nextTurnDelay(time){
+    setTimeout(function(){
+      dispatch({type: 'TURN_COUNTER'})
+    }, time)
   }
 
   return (

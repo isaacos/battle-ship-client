@@ -70,6 +70,7 @@ const updatePlayerBoats = (state, coordinateArray) => {
       const hitsArray = [...state.playerTwoShots[1], coordinate]
       const missesArray = [...state.playerTwoShots[0]]
       const playerTwoShots = [ missesArray, hitsArray ]
+
       return {...state, playerTwoShots: playerTwoShots, playerOneBoats: boats}
     }
   }

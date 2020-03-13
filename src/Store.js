@@ -15,17 +15,27 @@ const twoDArray = letters.map(function(letter){
   return row
 })
 
+const boats = [
+  {"Carrier": [0, 0, 0, 0, 0]},
+  {"Battleship": [0, 0, 0, 0]},
+  {"Submarine": [0, 0, 0]},
+  {"Destroyer": [0, 0, 0]},
+  {"Patrol Boat": [0, 0]}
+]
+
 const initialState = {
   twoDArray: twoDArray,
   letters: letters,
   turn: 1,
-  playerOneBoats: [{"Carrier": [0, 0, 0, 0, 0]}, {"Patrol Boat": [0, 0]}],
+  playerOneBoats: [...boats],
   playerTwoBoats: [{"Carrier": [0, 0, 0, 0, 0]}, {"Patrol Boat": [0, 0]}],
   selectedBoat: [],
   //first element logs misses, second logs hits
   playerOneShots: [[],[]],
   playerTwoShots: [[],[]]
 }
+
+
 
 
 const Store = ({children}) => {

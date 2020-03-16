@@ -1,4 +1,4 @@
-import React, { useContext } from 'react';
+import React, { useContext, useEffect } from 'react';
 import {Context} from '../Store';
 
 
@@ -27,8 +27,16 @@ function Square(props){
         boatCoordinates = updateBoatCoordinatesSharedColumn(coordinate, boatCoordinates)
       }
       if(boatCoordinates !== undefined && arraysElementsOverlap(props.playersBoatLocation, boatCoordinates)){
-        dispatch({type: 'UPDATE_PLAYER_BOATS', coordinateArray: boatCoordinates })
+        state.selectedBoat.filter(coor => coor !== 0).forEach(coor => document.getElementById(coor).classList.remove('selected'))
+        dispatch({type: 'UPDATE_SELECTED_BOAT', selectedCoordinates: boatCoordinates })
       }
+    }
+  }
+
+  function handleMouseUp(){
+    if(!state.selectedBoat.includes(0)){
+      state.selectedBoat.filter(coor => coor !== 0).forEach(coor => document.getElementById(coor).classList.remove('selected'))
+      dispatch({type: 'UPDATE_PLAYER_BOATS', coordinateArray: state.selectedBoat})
     }
   }
 
@@ -88,7 +96,7 @@ function Square(props){
 
 
   return(
-    <div id={props.coordinate} onMouseDown={() => handleMouseDown(props.coordinate) } onMouseEnter={() => handleMouseEnter(props.coordinate)} className="square">
+    <div id={props.coordinate} onMouseDown={() => handleMouseDown(props.coordinate) } onMouseUp={() => handleMouseUp()} onMouseEnter={() => handleMouseEnter(props.coordinate)} className="square">
     </div>
   )
 }

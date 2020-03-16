@@ -17,3 +17,7 @@ code {
   width: 40px;
   border-style: solid;
 }
+
+.selected {
+  opacity: 0.3;
+}

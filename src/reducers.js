@@ -84,6 +84,8 @@ const updatePlayerBoats = (state, coordinateArray) => {
       return {...state, selectedBoat: Object.values(action.selectedBoat)[0], selectedBoatName: Object.keys(action.selectedBoat)[0]}
     case 'INPUT_BOAT_COORDINATE':
       return {...state, selectedBoat: selectedBoatCoordinate(state, action.coordinate, action.index)}
+    case 'UPDATE_SELECTED_BOAT':
+      return {...state, selectedBoat: action.selectedCoordinates}
     case 'UPDATE_PLAYER_BOATS':
       return updatePlayerBoats(state, action.coordinateArray)
     case 'LOG_MISS':
